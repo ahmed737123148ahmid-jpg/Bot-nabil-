@@ -584,10 +584,22 @@ app.post('/api/uploadLocation', (req, res) => {
 app.get('/', (req, res) => {
     res.send('✅ بوت التحكم الاحترافي شغال!');
 });
-
-// ========== تشغيل الخادم ==========
+// صفحة حالة بسيطة
+app.get('/status', (req, res) => {
+    res.send(`
+        <html>
+        <head><title>Bot Status</title></head>
+        <body style="text-align:center;padding:50px;font-family:Arial">
+            <h1>✅ البوت شغال</h1>
+            <p>عدد الأجهزة المتصلة: ${Object.keys(connectedDevices).length}</p>
+            <p>آخر تحديث: ${new Date().toLocaleString('ar-EG')}</p>
+        </body>
+        </html>
+    `);
+});
 app.listen(port, () => {
     console.log(`🚀 البوت شغال على المنفذ ${port}`);
 });
 
 console.log('🤖 البوت بدأ العمل...');
+
